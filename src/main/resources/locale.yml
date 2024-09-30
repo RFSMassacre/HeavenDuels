@@ -9,10 +9,11 @@ invalid:
 
 duel:
   start: "&7A duel has started between &f{player} &7and &f{target}&7!"
+  ended: "&f{winner} &ewon their duel against &f{loser}&e!"
   in-duel:
     self: "&cYou are already in a duel!"
     target: "&f{player} &cis already in a duel!"
   invite:
-    sent: "&aYou have challenge &f{target} 7ato a duel!"
+    sent: "&aYou have challenge &f{target} &ato a duel!"
     received: "&f{player} &ehas challenged you a duel. Accept with &c/duel accept&e. Deny with &c/duel deny&e."
     no-invite: "&cYou weren't invited to a duel!"

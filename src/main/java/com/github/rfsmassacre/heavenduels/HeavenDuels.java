@@ -1,4 +1,4 @@
-package com.github.rfsmassacre.heavenDuels;
+package com.github.rfsmassacre.heavenduels;
 
 import com.github.rfsmassacre.spigot.files.configs.Configuration;
 import com.github.rfsmassacre.spigot.files.configs.Locale;
@@ -22,11 +22,5 @@ public final class HeavenDuels extends JavaPlugin
         this.locale = new Locale(this, "", "locale.yml");
         getServer().getPluginManager().registerEvents(new DuelListener(), this);
         getCommand("duel").setExecutor(new DuelCommand());
-    }
-
-    @Override
-    public void onDisable()
-    {
-
     }
 }

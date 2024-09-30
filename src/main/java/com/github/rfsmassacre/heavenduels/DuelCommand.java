@@ -1,4 +1,4 @@
-package com.github.rfsmassacre.heavenDuels;
+package com.github.rfsmassacre.heavenduels;
 
 import com.github.rfsmassacre.spigot.commands.SpigotCommand;
 import org.bukkit.Bukkit;
@@ -100,7 +100,7 @@ public class DuelCommand extends SpigotCommand
             if (args.length < 2)
             {
                 locale.sendLocale(player, "invalid.invalid-sub-args", "{command}", commandName, "{args}",
-                        "<player>");
+                        name + " <player>");
                 return;
             }
 
@@ -168,7 +168,7 @@ public class DuelCommand extends SpigotCommand
             Duel.addDuel(new Duel(invite.challengerId, invite.targetId));
             for (Player other : Bukkit.getOnlinePlayers())
             {
-                locale.sendLocale(other, "invite.started", "{player}",
+                locale.sendLocale(other, "duel.started", "{player}",
                         invite.getChallenger().getDisplayName(), "{target}", invite.getTarget().getDisplayName());
             }
         }

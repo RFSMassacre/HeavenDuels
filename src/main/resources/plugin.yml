@@ -1,0 +1,10 @@
+name: HeavenDuels
+version: '1.0-SNAPSHOT'
+main: com.github.rfsmassacre.heavenduels.HeavenDuels
+api-version: '1.21'
+depends:
+  - HeavenLibrary
+commands:
+  duel:
+    usage: "/duel"
+    permission: "heavenduels.duel"

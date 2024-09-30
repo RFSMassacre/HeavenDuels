@@ -1,8 +1,9 @@
-package com.github.rfsmassacre.heavenDuels;
+package com.github.rfsmassacre.heavenduels;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
+import java.util.*;
 
 public class Duel
 {
@@ -26,12 +27,17 @@ public class Duel
         DUELS.add(duel);
     }
 
+    public static void removeDuel(Duel duel)
+    {
+        DUELS.remove(duel);
+    }
+
     public static void removeDuel(UUID playerId)
     {
         Duel duel = getDuel(playerId);
         if (duel != null)
         {
-            DUELS.remove(duel);
+            removeDuel(duel);
         }
     }
 
@@ -40,15 +46,27 @@ public class Duel
         return new HashSet<>(DUELS);
     }
 
-    private final Set<UUID> playerIds;
+    private final List<UUID> playerIds;
 
     public Duel(UUID... playerIds)
     {
-        this.playerIds = Set.of(playerIds);
+        this.playerIds = List.of(playerIds);
     }
 
     public boolean isDueling(UUID playerId)
     {
         return playerIds.contains(playerId);
+    }
+
+    public List<UUID> getOpponents(Player player)
+    {
+        List<UUID> opponents = new ArrayList<>(playerIds);
+        opponents.removeIf((playerId) -> playerId.equals(player.getUniqueId()));
+        return opponents;
+    }
+
+    public Player getOpponent(Player player)
+    {
+        return Bukkit.getPlayer(getOpponents(player).getFirst());
     }
 }
