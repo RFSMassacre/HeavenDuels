@@ -1,0 +1,18 @@
+prefix: "&6Duels &8&l| &r"
+
+invalid:
+  no-perm: "&cYou don't have permission for this."
+  console: "&cOnly players can run this command!"
+  invalid-args: "&7Invalid arguments. Use &c/{command} help &7for more information."
+  invalid-sub-args: "&7Invalid arguments. Use &c/{command} {args}&7."
+  no-player: "&f{player} &ccannot be found!"
+
+duel:
+  start: "&7A duel has started between &f{player} &7and &f{target}&7!"
+  in-duel:
+    self: "&cYou are already in a duel!"
+    target: "&f{player} &cis already in a duel!"
+  invite:
+    sent: "&aYou have challenge &f{target} 7ato a duel!"
+    received: "&f{player} &ehas challenged you a duel. Accept with &c/duel accept&e. Deny with &c/duel deny&e."
+    no-invite: "&cYou weren't invited to a duel!"
