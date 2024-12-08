@@ -55,39 +55,6 @@ public class Duel
         }
     }
 
-    public double originalHealth(UUID playerId)
-    {
-        Health health = playerHealths.get(playerId);
-        if (health == null)
-        {
-            return 0.0;
-        }
-
-        return health.health;
-    }
-
-    public int originalFood(UUID playerId)
-    {
-        Health health = playerHealths.get(playerId);
-        if (health == null)
-        {
-            return 0;
-        }
-
-        return health.food;
-    }
-
-    public float originalSaturation(UUID playerId)
-    {
-        Health health = playerHealths.get(playerId);
-        if (health == null)
-        {
-            return 0.0F;
-        }
-
-        return health.saturation;
-    }
-
     public void restoreHealth(Player player)
     {
         Health health = playerHealths.get(player.getUniqueId());
@@ -106,7 +73,7 @@ public class Duel
         return playerHealths.containsKey(playerId);
     }
 
-    public List<UUID> getOpponents(Player player)
+    private List<UUID> getOpponents(Player player)
     {
         List<UUID> opponents = new ArrayList<>(playerHealths.keySet());
         opponents.removeIf((playerId) -> playerId.equals(player.getUniqueId()));
