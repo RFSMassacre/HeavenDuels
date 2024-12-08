@@ -175,6 +175,27 @@ public class DuelListener implements Listener
             locale.sendLocale(opponent, "duel.invite.denied.quit", "{player}", player.getDisplayName());
             DuelCommand.DuelInvite.removeInvite(invite);
         }
+
+        Duel duel = Duel.getDuel(player.getUniqueId());
+        if (duel != null)
+        {
+            Player opponent = duel.getOpponent(player);
+            Duel.removeDuel(duel);
+            duel.restoreHealth(opponent);
+            for (Player other : Bukkit.getOnlinePlayers())
+            {
+                locale.sendLocale(other, "duel.quit", "{winner}", opponent.getDisplayName(), "{loser}",
+                        player.getDisplayName());
+            }
+
+            int fadeIn = config.getInt("times.fade-in");
+            int stay = config.getInt("times.stay");
+            int fadeOut = config.getInt("times.fade-out");
+            String title = locale.getMessage("duel.won.title", false);
+            String subtitle = locale.getMessage("duel.won.quit", false);
+            locale.sendTitleMessage(opponent, fadeIn, stay, fadeOut, title, subtitle, "{player}",
+                    player.getDisplayName());
+        }
     }
 
     public Player getPlayer(Entity entity)

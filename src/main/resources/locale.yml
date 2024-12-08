@@ -13,10 +13,12 @@ duel:
   started: "&7A duel has started between &f{player} &7and &f{target}&7!"
   ended: "&f{winner} &ewon their duel against &f{loser}&e!"
   retreated: "&f{loser} &7retreated from their duel against &f{winner}&7!"
+  quit: "&f{loser} &7logged off and lost their duel against &f{winner}&7!"
   won:
     title: "&aYou Won!"
     subtitle: "&7You beat &f{player}&7!"
     retreated: "&f{player} &7retreated!"
+    quit: "&f{player} &7logged off!"
   lost:
     title: "&cYou Lost!"
     subtitle: "&7&f{player}&7 beat you!"
