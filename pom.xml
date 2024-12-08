@@ -52,6 +52,10 @@
 
     <repositories>
         <repository>
+            <id>heavenreborn</id>
+            <url>https://maven.heavenreborn.com/snapshots</url>
+        </repository>
+        <repository>
             <id>papermc-repo</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
@@ -69,7 +73,7 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.RFSMassacre</groupId>
+            <groupId>com.github.rfsmassacre</groupId>
             <artifactId>HeavenLibrary</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>provided</scope>
