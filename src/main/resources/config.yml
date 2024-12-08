@@ -1,2 +1,9 @@
-#In seconds
+#In seconds.
 invite-timeout: 300
+radius: 64
+
+#Title durations in ticks.
+times:
+  fade-in: 10
+  stay: 60
+  fade-out: 10

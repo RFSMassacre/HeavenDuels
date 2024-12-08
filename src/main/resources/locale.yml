@@ -1,19 +1,37 @@
 prefix: "&6Duels &8&l| &r"
 
+reloaded: "&eThe configuration files have been reloaded!"
+
 invalid:
   no-perm: "&cYou don't have permission for this."
   console: "&cOnly players can run this command!"
-  invalid-args: "&7Invalid arguments. Use &c/{command} help &7for more information."
-  invalid-sub-args: "&7Invalid arguments. Use &c/{command} {args}&7."
+  command: "&7Invalid arguments. Use &c/{command} help &7for more information."
+  invalid-args: "&7Invalid arguments. Use &c/{command} {args}&7."
   no-player: "&f{player} &ccannot be found!"
 
 duel:
-  start: "&7A duel has started between &f{player} &7and &f{target}&7!"
+  started: "&7A duel has started between &f{player} &7and &f{target}&7!"
   ended: "&f{winner} &ewon their duel against &f{loser}&e!"
+  retreated: "&f{loser} &7retreated from their duel against &f{winner}&7!"
+  won:
+    title: "&aYou Won!"
+    subtitle: "&7You beat &f{player}&7!"
+    retreated: "&f{player} &7retreated!"
+  lost:
+    title: "&cYou Lost!"
+    subtitle: "&7&f{player}&7 beat you!"
+    retreated: "&7You retreated!"
   in-duel:
     self: "&cYou are already in a duel!"
     target: "&f{player} &cis already in a duel!"
   invite:
+    invited: "&f{player} &cis already being challenged to a duel..."
+    self: "&cYou cannot duel yourself!"
     sent: "&aYou have challenge &f{target} &ato a duel!"
     received: "&f{player} &ehas challenged you a duel. Accept with &c/duel accept&e. Deny with &c/duel deny&e."
     no-invite: "&cYou weren't invited to a duel!"
+    out-of-radius: "&f{player} &cis not close enough! Get within range to start your duel."
+    denied:
+      self: "&cYou have denied &f{player}&c's challenge."
+      target: "&f{player} &chas denied your challenge."
+      quit: "&f{player} &chas left the game and cannot accept your challenge."
