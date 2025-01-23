@@ -3,12 +3,14 @@ package com.github.rfsmassacre.heavenduels;
 import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 
 import java.util.*;
 
 public class Duel
 {
-    private record Health(UUID playerId, double health, int food, float saturation)
+    private record Health(UUID playerId, double health, int food, float saturation, int fireTick,
+                          Collection<PotionEffect> potionEffects)
     {
 
     }
@@ -51,7 +53,8 @@ public class Duel
         for (Player player : players)
         {
             playerHealths.put(player.getUniqueId(), new Health(player.getUniqueId(), player.getHealth(),
-                    player.getFoodLevel(), player.getSaturation()));
+                    player.getFoodLevel(), player.getSaturation(), player.getFireTicks(),
+                    player.getActivePotionEffects()));
         }
     }
 
@@ -66,6 +69,9 @@ public class Duel
         player.setHealth(Math.min(health.health, player.getAttribute(Attribute.MAX_HEALTH).getValue()));
         player.setFoodLevel(Math.min(health.food, 20));
         player.setSaturation(Math.min(health.saturation, 20.0F));
+        player.setFireTicks(Math.max(0, health.fireTick));
+        player.clearActivePotionEffects();
+        player.addPotionEffects(health.potionEffects);
     }
 
     public boolean isDueling(UUID playerId)

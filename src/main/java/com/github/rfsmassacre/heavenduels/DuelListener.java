@@ -5,7 +5,6 @@ import com.github.rfsmassacre.heavenlibrary.paper.configs.PaperLocale;
 import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
 import org.bukkit.Location;
-import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -46,8 +45,13 @@ public class DuelListener implements Listener
             return;
         }
 
+        if (defender.hasMetadata("heavenraces"))
+        {
+            return;
+        }
+
         Player opponent = duel.getOpponent(defender);
-        if (defender.getHealth() - event.getFinalDamage() <= 0.0)
+        if (defender.getHealth() - event.getFinalDamage() <= 0.0 && defender.equals(event.getEntity()))
         {
             for (Player other : Bukkit.getOnlinePlayers())
             {
@@ -70,6 +74,12 @@ public class DuelListener implements Listener
             Duel.removeDuel(duel);
             duel.restoreHealth(defender);
             duel.restoreHealth(opponent);
+            Bukkit.getScheduler().runTaskLater(HeavenDuels.getInstance(), () ->
+            {
+                duel.restoreHealth(defender);
+                duel.restoreHealth(opponent);
+            }, 1L);
+
             event.setCancelled(true);
             defender.playEffect(EntityEffect.TOTEM_RESURRECT);
             return;

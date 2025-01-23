@@ -28,6 +28,7 @@ duel:
     target: "&f{player} &cis already in a duel!"
   invite:
     invited: "&f{player} &cis already being challenged to a duel..."
+    already-sent: "&cYou already sent a request to duel someone!"
     self: "&cYou cannot duel yourself!"
     sent: "&aYou have challenge &f{target} &ato a duel!"
     received: "&f{player} &ehas challenged you a duel. Accept with &c/duel accept&e. Deny with &c/duel deny&e."

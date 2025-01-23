@@ -77,12 +77,6 @@ public class DuelCommand extends PaperCommand
     public DuelCommand()
     {
         super(HeavenDuels.getInstance(), "duel");
-
-        addSubCommand(new MenuCommand());
-        addSubCommand(new InviteCommand());
-        addSubCommand(new AcceptCommand());
-        addSubCommand(new DenyCommand());
-        addSubCommand(new ReloadCommand());
     }
 
     private class MenuCommand extends PaperSubCommand
@@ -105,12 +99,6 @@ public class DuelCommand extends PaperCommand
             Menu.addView(player.getUniqueId(), menu);
             player.openInventory(menu.createInventory(player));
             playSound(player, SoundKey.SUCCESS);
-        }
-
-        @Override
-        public List<String> onTabComplete(CommandSender sender, String[] strings)
-        {
-            return List.of();
         }
     }
 
@@ -137,6 +125,13 @@ public class DuelCommand extends PaperCommand
                 return;
             }
 
+            if (DuelInvite.getInvite(player.getUniqueId()) != null)
+            {
+                locale.sendLocale(player, "duel.invite.already-sent");
+                playSound(sender, SoundKey.INCOMPLETE);
+                return;
+            }
+
             if (args.length < 2)
             {
                 locale.sendLocale(player, "invalid.invalid-args", "{command}", commandName, "{args}",
@@ -158,6 +153,14 @@ public class DuelCommand extends PaperCommand
             {
                 locale.sendLocale(player, "duel.invite.self");
                 playSound(player, SoundKey.INCOMPLETE);
+                return;
+            }
+
+
+            if (DuelInvite.getInvite(target.getUniqueId()) != null)
+            {
+                locale.sendLocale(player, "duel.invite.invited", "{target}", target.getDisplayName());
+                playSound(sender, SoundKey.INCOMPLETE);
                 return;
             }
 
@@ -226,7 +229,7 @@ public class DuelCommand extends PaperCommand
 
             int radius = config.getInt("radius");
             Player challenger = invite.getChallenger();
-            if (challenger == null)
+            if (challenger == null || challenger.equals(player))
             {
                 locale.sendLocale(player, "duel.invite.no-invite");
                 DuelInvite.removeInvite(invite);
@@ -252,12 +255,6 @@ public class DuelCommand extends PaperCommand
             }
 
             playSound(sender, SoundKey.SUCCESS);
-        }
-
-        @Override
-        public List<String> onTabComplete(CommandSender sender, String[] args)
-        {
-            return Collections.emptyList();
         }
     }
 
@@ -291,12 +288,6 @@ public class DuelCommand extends PaperCommand
                     invite.getTarget().getDisplayName());
             playSound(sender, SoundKey.SUCCESS);
         }
-
-        @Override
-        public List<String> onTabComplete(CommandSender sender, String[] args)
-        {
-            return Collections.emptyList();
-        }
     }
 
     private class ReloadCommand extends PaperSubCommand
@@ -313,12 +304,6 @@ public class DuelCommand extends PaperCommand
             locale.reload();
             locale.sendLocale(sender, "reloaded");
             playSound(sender, SoundKey.SUCCESS);
-        }
-
-        @Override
-        public List<String> onTabComplete(CommandSender sender, String[] args)
-        {
-            return Collections.emptyList();
         }
     }
 }

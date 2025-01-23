@@ -1,6 +1,7 @@
 package com.github.rfsmassacre.heavenduels;
 
 import com.github.rfsmassacre.heavenduels.DuelCommand.DuelInvite;
+import com.github.rfsmassacre.heavenlibrary.paper.commands.SimplePaperCommand;
 import com.github.rfsmassacre.heavenlibrary.paper.configs.PaperConfiguration;
 import com.github.rfsmassacre.heavenlibrary.paper.configs.PaperLocale;
 import com.github.rfsmassacre.heavenlibrary.paper.menu.DividerIcon;
@@ -146,6 +147,20 @@ public class DuelMenu extends Menu
         {
             if (!target.isOnline())
             {
+                return;
+            }
+
+            if (Duel.getDuel(player.getUniqueId()) != null)
+            {
+                locale.sendLocale(player, "duel.in-duel.self");
+                player.closeInventory();
+                return;
+            }
+
+            if (DuelInvite.getInvite(player.getUniqueId()) != null)
+            {
+                locale.sendLocale(player, "duel.invite.already-sent");
+                player.closeInventory();
                 return;
             }
 
