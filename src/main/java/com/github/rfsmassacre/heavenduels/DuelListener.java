@@ -79,6 +79,16 @@ public class DuelListener implements Listener
                 duel.restoreHealth(defender);
                 duel.restoreHealth(opponent);
             }, 1L);
+            Bukkit.getScheduler().runTaskLater(HeavenDuels.getInstance(), () ->
+            {
+                duel.restoreHealth(defender);
+                duel.restoreHealth(opponent);
+            }, 2L);
+            Bukkit.getScheduler().runTaskLater(HeavenDuels.getInstance(), () ->
+            {
+                duel.restoreHealth(defender);
+                duel.restoreHealth(opponent);
+            }, 3L);
 
             event.setCancelled(true);
             defender.playEffect(EntityEffect.TOTEM_RESURRECT);
